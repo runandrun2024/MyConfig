@@ -1,6 +1,10 @@
 ; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
 ;; ------------------------------------------------------------------------
+;; @ 環境変数
+;;   (setenv "LANG" "ja_JP.UTF-8")
+
+;; ------------------------------------------------------------------------
 ;; @ coding system
 
    ;; 日本語入力のための設定
@@ -14,14 +18,17 @@
 ;; @ ime
 
    ;; 標準IMEの設定
-   (setq default-input-method "anthy")
+   ;; (setq default-input-method "anthy")
+   (require 'mozc)
+   (set-language-environment "Japanese")
+   (setq default-input-method "japanese-mozc")
 
    ;; IME状態のモードライン表示
    ;; (setq-default w32-ime-mode-line-state-indicator "[Aa]")
    ;; (setq w32-ime-mode-line-state-indicator-list '("[Aa]" "[あ]" "[Aa]"))
 
    ;; IMEの初期化
-   (load-library "anthy")
+   ;; (load-library "anthy")
 
    ;; IME OFF時の初期カーソルカラー
    (set-cursor-color "green")
