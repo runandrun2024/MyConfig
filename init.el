@@ -6,12 +6,25 @@
 
 ;; ------------------------------------------------------------------------
 ;; @ coding system
+   ;; 言語環境
+   (set-language-environment "Japanese")
 
-   ;; 日本語入力のための設定
+   ;; デフォルトの文字コード
+   ;; 1.ファイルを新規作成した場合のデフォルト
+   ;; 2.サブプロセスでのIO
+   ;; 3.他の項目が指定されていない場合のデフォルト値
+   (prefer-coding-system 'utf-8-unix)
+
+   ;; ファイル名
+   (set-file-name-coding-system 'utf-8)
+
+   ;; キーボード
    (set-keyboard-coding-system 'utf-8)
 
-   (prefer-coding-system 'utf-8-unix)
-   (set-file-name-coding-system 'utf-8)
+   ;; ターミナル(コンソール) - ターミナルモードで起動した場合
+   (set-terminal-coding-system 'utf-8)
+
+   ;; なにも指定されていないサブプロセス（やネットワークストリーム） の入出力に使用する
    (setq default-process-coding-system '(utf-8 . utf-8))
 
 ;; ------------------------------------------------------------------------
@@ -20,7 +33,6 @@
    ;; 標準IMEの設定
    ;; (setq default-input-method "anthy")
    (require 'mozc)
-   (set-language-environment "Japanese")
    (setq default-input-method "japanese-mozc")
 
    ;; IME状態のモードライン表示
