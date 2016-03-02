@@ -57,6 +57,7 @@
 ;; ------------------------------------------------------------------------
 ;; @ frame
 (set-face-attribute 'default nil
+		    ;;:family "Menlo" ;; font 
 		    :height 110) ;; font size
 
 ;; ------------------------------------------------------------------------
@@ -220,10 +221,21 @@
 	     (setq sql-indent-maybe-tab t)
 	     (setq sql-tab-width 4)))
 
+;; markdown
+(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
+(setq markdown-command "/usr/local/bin/marked")
+
+;; (setq auto-mode-alist (cons '("\\.markdown" . markdown-mode) auto-mode-alist))
+;; (setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.markdown" . gfm-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.md" . gfm-mode) auto-mode-alist))
+
+;; -------------------------------------------------------------------------------
 ;; Window間の移動を矢印キーで行う。
 (windmove-default-keybindings)
 (setq windmove-wrap-around t)
 
+;; -------------------------------------------------------------------------------
 ;;; Frame parameters
 (setq default-frame-alist
       (append '((foreground-color . "white")
@@ -241,3 +253,21 @@
 
 (setq initial-frame-alist default-frame-alist)
 
+;; -------------------------------------------------------------------------------
+;; package manager
+(require 'package)
+
+;; Marmaladeを追加
+(add-to-list 'package-archives  '("marmalade" . "http://marmalade-repo.org/packages/"))
+
+;; Orgを追加
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+
+;; MELPAを追加
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+
+;; MELPA-stableを追加
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
+;; 初期化
+(package-initialize)
